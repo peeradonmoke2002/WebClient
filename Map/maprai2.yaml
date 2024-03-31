@@ -1,0 +1,9 @@
+free_thresh: 0.196
+image: /home/rai/rai_robot_ws/src/webclient/Map/maprai2.pgm
+negate: 0
+occupied_thresh: 0.650
+origin:
+- -25.612
+- -25.612
+- 0.000
+resolution: 0.025

@@ -1,0 +1,22 @@
+<launch>
+    <!-- set agv map -->
+    <rosparam ns="/agv/mapfile" command="load" file="/home/rai/rai_robot_info/defaultMap.yaml"/>
+    <!--  set agv modes  -->
+    <param name="agv/modes" type="string" value="IDLE"/>
+    <!--  switch between amcl and gmapping mode -->
+    <node pkg="webclient" name="agv_change_mode" type="agv_change_mode.py" />
+    <!--  save the map after gmapping  -->
+    <node pkg="webclient" name="agv_gmapping_server" type="agv_gmapping_server.py"/>
+    <!--  waypoint  -->
+    <node pkg="webclient" name="waypoint_server" type="waypoint_server.py"/>
+    <!--  amcl_cov  -->
+    <include file="$(find webclient)/launch/amcl_cov.launch" />
+    <!--  rosbridge  -->
+    <include file="$(find webclient)/launch/rosbrige.launch" />
+    <include file="$(find webclient)/launch/tf2_web.launch" />
+    <!--  agv satatus  -->
+    <include file="$(find webclient)/launch/agv_status.launch" />
+    <!--  wifi  -->
+    <node pkg="webclient" name="wifi_network" type="wifi_network.py"/>
+</launch>
+

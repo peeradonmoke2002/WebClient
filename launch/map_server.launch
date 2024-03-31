@@ -1,0 +1,9 @@
+<launch>
+
+    <rosparam ns="/agv/mapfile" file="/home/rai/rai_robot_info/defaultMap.yaml"  command="load" />
+    <node name="map_server" pkg="map_server" type="map_server" 
+    launch-prefix="/bin/bash -c '$* `rosparam get /agv/mapfile`' --">
+     <param name="frame_id" type="string" value="map"/>
+    </node>
+
+</launch>

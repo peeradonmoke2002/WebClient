@@ -1,0 +1,7 @@
+<launch>
+   
+    <!--  amcl_cov  -->
+    <node pkg="webclient" name="amcl_cov_republisher" type="amcl_cov_republisher.py"/>
+  
+</launch>
+

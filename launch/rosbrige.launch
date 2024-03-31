@@ -1,0 +1,75 @@
+<launch>
+  <!-- Common parameters -->
+  <arg name="output" default="log"/>
+  <arg name="retry_startup_delay" default="5" />
+  <!-- Add comments to explain parameters -->
+  <arg name="port" default="9090" />
+  <arg name="address" default="" />
+  <arg name="ssl" default="false" />
+  <arg name="certfile" default=""/>
+  <arg name="keyfile" default="" />
+
+  <arg name="fragment_timeout" default="600" />
+  <arg name="delay_between_messages" default="0" />
+  <arg name="max_message_size" default="None" />
+
+  <arg name="authenticate" default="false" />
+
+  <arg name="topics_glob" default="[*]" />
+  <arg name="services_glob" default="[*]" />
+  <arg name="params_glob" default="[*]" />
+  <arg name="bson_only_mode" default="false" />
+
+  <!-- Valid options for binary_encoder are "default", "b64" and "bson". -->
+  <arg unless="$(arg bson_only_mode)" name="binary_encoder" default="default"/>
+
+  <group if="$(arg ssl)">
+    <node name="rosbridge_websocket" pkg="rosbridge_server" type="rosbridge_websocket" output="$(arg output)">
+      <!-- WebSocket parameters -->
+      <param name="port" value="$(arg port)"/>
+      <param name="address" value="$(arg address)"/>
+      <param name="retry_startup_delay" value="$(arg retry_startup_delay)"/>
+      <param name="fragment_timeout" value="$(arg fragment_timeout)"/>
+      <param name="delay_between_messages" value="$(arg delay_between_messages)"/>
+      <param name="max_message_size" value="$(arg max_message_size)"/>
+      <!-- SSL parameters -->
+      <param name="certfile" value="$(arg certfile)" />
+      <param name="keyfile" value="$(arg keyfile)" />
+      <param name="authenticate" value="$(arg authenticate)" />
+      <!-- Common parameters -->
+      <param name="topics_glob" value="$(arg topics_glob)"/>
+      <param name="services_glob" value="$(arg services_glob)"/>
+      <param name="params_glob" value="$(arg params_glob)"/>
+      <param name="bson_only_mode" value="$(arg bson_only_mode)"/>
+      <!-- Remap if needed -->
+      <remap from="client_count" to="rosbridge_websocket/client_count" />
+    </node>
+  </group>
+
+  <group unless="$(arg ssl)">
+    <node name="rosbridge_websocket" pkg="rosbridge_server" type="rosbridge_websocket">
+      <!-- WebSocket parameters -->
+      <param name="port" value="$(arg port)"/>
+      <param name="address" value="$(arg address)"/>
+      <param name="retry_startup_delay" value="$(arg retry_startup_delay)"/>
+      <param name="fragment_timeout" value="$(arg fragment_timeout)"/>
+      <param name="delay_between_messages" value="$(arg delay_between_messages)"/>
+      <param name="max_message_size" value="$(arg max_message_size)"/>
+      <!-- Common parameters -->
+      <param name="authenticate" value="$(arg authenticate)" />
+      <param name="topics_glob" value="$(arg topics_glob)"/>
+      <param name="services_glob" value="$(arg services_glob)"/>
+      <param name="params_glob" value="$(arg params_glob)"/>
+      <param name="bson_only_mode" value="$(arg bson_only_mode)"/>
+      <!-- Remap if needed -->
+      <remap from="client_count" to="rosbridge_websocket/client_count" />
+    </node>
+  </group>
+
+  <node name="rosapi" pkg="rosapi" type="rosapi_node">
+    <!-- rosapi_node parameters -->
+    <param name="topics_glob" value="$(arg topics_glob)"/>
+    <param name="services_glob" value="$(arg services_glob)"/>
+    <param name="params_glob" value="$(arg params_glob)"/>
+  </node>
+</launch>

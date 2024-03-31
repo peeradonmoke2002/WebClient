@@ -1,0 +1,6 @@
+<launch>
+   
+    <node pkg="webclient" name="agv_status" type="agv_status.py"/>
+  
+</launch>
+

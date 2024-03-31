@@ -1,0 +1,6 @@
+<launch>
+    <!--  switch between amcl and gmapping mode -->
+    <node pkg="webclient" name="agv_change_mode" type="agv_change_mode.py" />
+
+</launch>
+

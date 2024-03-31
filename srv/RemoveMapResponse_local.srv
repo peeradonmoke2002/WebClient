@@ -1,0 +1,4 @@
+# RemoveMapLocal.srv
+string map_name
+---
+string result

@@ -1,0 +1,6 @@
+# MapConsistencyCheck.srv
+---
+bool are_consistent         # Whether the maps are consistent
+string error_message        # Error message if any
+string[] missing_in_db      # List of map names missing in the database
+string[] missing_in_local   # List of map names missing locally
