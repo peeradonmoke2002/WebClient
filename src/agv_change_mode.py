@@ -14,7 +14,7 @@ DB_PASSWORD = 'rai'
 DB_HOST = '10.100.16.55'  
 DB_PORT = 5432
 
-AGV_NAME = 'Robot01'
+AGV_NAME = 'Robot04'
 def kill_nodes(node_list):
     running_nodes = rosnode.get_node_names()
     nodes_to_kill = [node for node in running_nodes if any(node.startswith(name) for name in node_list)]
