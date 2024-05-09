@@ -1,5 +1,0 @@
-<launch>
-    <!-- set agv database config -->
-    <rosparam ns="/agv/database" command="load" file="$(find webclient)/robot_config/database_config.yaml"/>
-    <rosparam ns="/agv" command="load" file="$(find webclient)/robot_config/robot_information.yaml"/>
-</launch>

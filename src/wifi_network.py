@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-import rospy
+import rospy, rospkg
 import subprocess
 import time
 
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('webclient')
+savelogfile = package_path + '/robot_config/wifi_ping_log.txt'
+
 HOST_ROUTE = rospy.get_param('/agv/wifi_gateway', '1.1.1.1')
-LOG_FILE = rospy.get_param('/agv/wifi_log_file', '/home/rai/rai_robot_ws/src/webclient/robot_config/wifi_ping_log.txt')
+LOG_FILE = rospy.get_param('/agv/wifi_log_file', savelogfile)
 
 class WifiConnection:
 

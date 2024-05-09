@@ -1,8 +1,11 @@
 #! /usr/bin/env python3
-import rospy, os
+import rospy, os, rospkg
 from math import sqrt
 from webclient.srv import *
-savewpfile = '/home/rai/rai_robot_ws/src/webclient/robot_config/robotwaypoint.yaml'
+
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('webclient')
+savewpfile = package_path + '/robot_config/robotwaypoint.yaml'
 
 def current_pose_saver(req):
     rospy.loginfo('start saving last pose as waypoint [%s]', req.waypointname)
