@@ -17,7 +17,7 @@ DB_HOST = '10.100.16.55'
 DB_PORT = 5432
 ################################
 # robot name
-AGV_NAME = 'Robot01'
+AGV_NAME = 'Robot04'
 ################################
 
 run_rosbridge_check = True
