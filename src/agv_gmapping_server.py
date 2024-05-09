@@ -76,7 +76,6 @@ def kill_nodes(node_list):
 
 ###########################
 
-# Check Map Consistency #
 def check_map_consistency_periodic():
     while not rospy.is_shutdown():
         try:
@@ -106,27 +105,27 @@ def check_map_consistency_periodic():
 
 def check_map_consistency(req):
     try:
-        # Connect to the database
+
         connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         cursor = connection.cursor()
 
-        # Retrieve the list of map names from the database
+
         cursor.execute("SELECT map_name FROM maps;")
-        # Get the map names from the database
+
         db_map_names = [result[0] for result in cursor.fetchall()]
 
-        # Close the cursor and connection
+
         cursor.close()
         connection.close()
 
-        # Get map names from the local directory
+
         local_map_names = [x[:-5] for x in os.listdir(mappath) if x.endswith('.yaml')]
 
-        # Check if the local map and the map in the database are the same
+
         missing_in_db = [name for name in local_map_names if name not in db_map_names]
         missing_in_local = [name for name in db_map_names if name not in local_map_names]
 
-        # Prepare the response
+
         response = MapConsistencyCheckResponse()
         response.are_consistent = not (missing_in_db or missing_in_local)
         response.error_message = "Maps are consistent."
@@ -152,7 +151,6 @@ def get_map_list_handler(req):
         connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         cursor = connection.cursor()
 
-        # Retrieve the list of map names
         cursor.execute("SELECT map_name FROM maps;")
         map_names = [result[0] for result in cursor.fetchall()]
 
@@ -314,7 +312,6 @@ def remove_map_db_handler(req):
     try:
         map_name = req.map_name
 
-        # Use a context manager (with statement) to handle connection and cursor
         with psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT) as connection:
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM maps WHERE map_name = %s;", (map_name,))

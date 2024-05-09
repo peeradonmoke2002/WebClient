@@ -14,12 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   message_generation
-  # pluginlib
-
-  # nav_core
-  # tf
-  # cmake_modules
-  # costmap_2d
 )
 
 ## System dependencies are found with CMake's conventions

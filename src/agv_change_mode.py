@@ -120,11 +120,7 @@ def mode_switch_cb(req):
                 
         if launch_cmd == 'MapReload':
             rospy.loginfo('Restart map server to load new map config.')
-            # rospy.set_param('/agv/mapfile', pathMap)
-            # rospy.set_param('/map_server/frame_id', 'map')
-            # frame_id_value = rospy.get_param('/map_server/frame_id')
             param_value = rospy.get_param('/agv/mapfile')
-            # p33 = subprocess.Popen(['rosrun', 'map_server', 'map_server', param_value + '.yaml'])
             p33 = subprocess.Popen(['roslaunch', 'webclient', 'map_server.launch'])
            
             return SMLauncherResponse(f'Map_Reload now..... is set at {param_value}')
