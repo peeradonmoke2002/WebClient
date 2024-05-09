@@ -2,7 +2,7 @@
 import socket
 import traceback
 import psycopg2
-import rospy, rosnode
+import rospy, rosnode, rospkg
 from std_msgs.msg import Int32
 from threading import Timer
 import signal
@@ -10,15 +10,23 @@ import sys
 import time
 
 # Database connection parameters
-DB_NAME = 'ros-database'
-DB_USER = 'rai'
-DB_PASSWORD = 'rai'
-DB_HOST = '10.100.16.55'  
-DB_PORT = 5432
+DB_NAME = rospy.get_param('/agv/database/DB_NAME')
+DB_USER = rospy.get_param('/agv/database/DB_USER')
+DB_PASSWORD = rospy.get_param('/agv/database/DB_PASSWORD')
+DB_HOST = rospy.get_param('/agv/database/DB_HOST')
+DB_PORT = rospy.get_param('/agv/database/DB_PORT')
 ################################
 # robot name
-AGV_NAME = 'Robot04'
+AGV_NAME = rospy.get_param('/agv/robot_id')
 ################################
+
+## Path file ##
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('webclient')
+mappath = package_path + '/Map/'
+configpath = package_path + '/robot_config/'
+defaultMap = configpath + 'defaultMap.yaml'
+###########################
 
 run_rosbridge_check = True
 rosbridge_timer = None

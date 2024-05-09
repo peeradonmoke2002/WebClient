@@ -1,0 +1,5 @@
+DB_NAME: 'ros-database'
+DB_USER: 'rai'
+DB_PASSWORD: 'rai'
+DB_HOST: '10.100.16.55'
+DB_PORT: 5432

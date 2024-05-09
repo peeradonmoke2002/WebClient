@@ -1,20 +1,29 @@
 #! /usr/bin/env python3
-import rospy, rosnode, os, subprocess, time, yaml
+import rospy, rosnode, os, subprocess, time, yaml, rospkg
 import psycopg2
 import signal
 import sys
 from webclient.srv import *
 
-defaultMap = '/home/rai/rai_robot_info/defaultMap.yaml'
-
 # Database connection parameters
-DB_NAME = 'ros-database'
-DB_USER = 'rai'
-DB_PASSWORD = 'rai'
-DB_HOST = '10.100.16.55'  
-DB_PORT = 5432
+DB_NAME = rospy.get_param('/agv/database/DB_NAME')
+DB_USER = rospy.get_param('/agv/database/DB_USER')
+DB_PASSWORD = rospy.get_param('/agv/database/DB_PASSWORD')
+DB_HOST = rospy.get_param('/agv/database/DB_HOST')
+DB_PORT = rospy.get_param('/agv/database/DB_PORT')
+################################
+# robot name
+AGV_NAME = rospy.get_param('/agv/robot_id')
+################################
 
-AGV_NAME = 'Robot04'
+## Path file ##
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('webclient')
+mappath = package_path + '/Map/'
+configpath = package_path + '/robot_config/'
+defaultMap = configpath + 'defaultMap.yaml'
+###########################
+
 def kill_nodes(node_list):
     running_nodes = rosnode.get_node_names()
     nodes_to_kill = [node for node in running_nodes if any(node.startswith(name) for name in node_list)]

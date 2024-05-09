@@ -1,6 +1,8 @@
 <launch>
+    <rosparam ns="/agv/database" command="load" file="$(find webclient)/robot_config/database_config.yaml"/>
+    <rosparam ns="/agv" command="load" file="$(find webclient)/robot_config/robot_information.yaml"/>
     <!-- set agv map -->
-    <rosparam ns="/agv/mapfile" command="load" file="/home/rai/rai_robot_info/defaultMap.yaml"/>
+    <rosparam ns="/agv/mapfile" command="load" file="$(find webclient)/robot_config/defaultMap.yaml"/>
     <!--  set agv modes  -->
     <param name="agv/modes" type="string" value="IDLE"/>
     <!--  switch between amcl and gmapping mode -->
