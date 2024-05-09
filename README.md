@@ -8,8 +8,8 @@ This package provides the necessary interfaces and tools to integrate a web appl
 
 ## File use for Develop
 
-- 'waypoint_server.py: waypoint ros server
-- 'wifi_network.py: use for monitor wifi ros parameter
+- waypoint_server.py: waypoint ros server
+- wifi_network.py: use for monitor wifi ros parameter
 
 <!-- ## Installation
 
