@@ -6,7 +6,7 @@ This is a ROS (Robot Operating System) package designed to support a web applica
 
 This package provides the necessary interfaces and tools to integrate a web application with a ROS-based system. It allows the web application to interact with the ROS system, send commands, and receive data.
 
-## Installation
+<!-- ## Installation
 
 Provide instructions on how to install this package.
 
@@ -20,4 +20,4 @@ Provide instructions on how to contribute to this project.
 
 ## License
 
-Provide information about the license.
+Provide information about the license. -->
