@@ -23,7 +23,7 @@ AGV_NAME = rospy.get_param('/agv/robot_id')
 ## Path file ##
 rospack = rospkg.RosPack()
 package_path = rospack.get_path('webclient')
-mappath = package_path + '/Map/'
+mappath = package_path + '/maps/'
 configpath = package_path + '/robot_config/'
 defaultMap = configpath + 'defaultMap.yaml'
 ###########################
