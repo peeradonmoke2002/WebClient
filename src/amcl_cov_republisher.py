@@ -2,7 +2,7 @@
 import rospy, rosparam, PyKDL, rospkg
 from math import sqrt, pi
 from geometry_msgs.msg import Point, PoseWithCovarianceStamped, Pose
-
+## This script is used to republish the covariance of the amcl pose and save the amcl pose to disk
 rospack = rospkg.RosPack()
 package_path = rospack.get_path('webclient')
 pub = None
