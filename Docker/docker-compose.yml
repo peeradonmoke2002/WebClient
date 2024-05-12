@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webclient:
+    image: webclient:noetic
+    container_name: webclient
+    volumes:
+      - ../../webclient:/root/catkin_ws/src/webclient
+    command: /bin/bash -c "source /opt/ros/noetic/setup.bash; cd /root/catkin_ws/; catkin_make; source /root/catkin_ws/devel/setup.bash; roslaunch webclient start_all.launch"
+    tty: true
+    stdin_open: true
+    environment:
+      ROS_IP: 10.100.16.55
+      ROS_MASTER_URI: http://10.100.16.55:11311
+    network_mode: "host"
+    restart: unless-stopped

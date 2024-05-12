@@ -1,3 +1,6 @@
 # ignore .vscode
 .vscode
 
+# ignore docker image .tar
+webclient.tar
+
