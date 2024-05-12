@@ -87,21 +87,6 @@ def mode_switch_cb(req):
 
             p02 = subprocess.Popen(['roslaunch', 'turtlebot3_gazebo', 'turtlebot3_house.launch'])
             return SMLauncherResponse('Starting turtlebot gazebo launch file ...') 
-
-        if launch_cmd == 'SIM_SLAM':
-            rospy.loginfo('Switch to gmapping mode ...')
-            kill_list = ['/rviz','/turtlebot3_slam_gmapping','/move_base','/amcl']
-            fail = kill_nodes(kill_list)
-            if fail:
-                rospy.logerr('Failed to kill nodes: %s', fail)
-            else:
-                rospy.logerr('All specified nodes killed successfully.')
-
-            p12 = subprocess.Popen(['roslaunch', 'turtlebot3_slam', 'turtlebot3_slam.launch', 'slam_methods:=gmapping'])
-            rospy.set_param('/agv/modes', 'SLAM')
-            set_mode_db('SLAM')
-           
-            return SMLauncherResponse('Starting Gmapping Process')
         
         if launch_cmd == 'SLAM':
             rospy.loginfo('Switch to gmapping mode ...')
@@ -124,28 +109,7 @@ def mode_switch_cb(req):
             p33 = subprocess.Popen(['roslaunch', 'webclient', 'map_server.launch'])
            
             return SMLauncherResponse(f'Map_Reload now..... is set at {param_value}')
-        
-        if launch_cmd == 'SIM_NAV':
-            rospy.loginfo('Starting navigation process ...')
-            kill_list = ['/robot_state_publisher','/rviz','/map_server','/move_base','/amcl']
-            fail = kill_nodes(kill_list)
-            if fail:
-                rospy.logerr('Failed to kill nodes: %s', fail)
-            else:
-                rospy.logerr('All specified nodes killed successfully.')
-
-            with open(defaultMap, 'r') as file:
-                pathMap = file.readline().strip()
-            map_file_path = pathMap 
-
-            p12 = subprocess.Popen(['rosrun', 'webclient', 'amcl_cov_republisher.py'])
-            rospy.sleep(2.0)
-            p13 = subprocess.Popen(['roslaunch', 'turtlebot3_navigation', 'turtlebot3_navigation.launch', f'map_file:={map_file_path}'])
-            rospy.set_param('/agv/modes', 'NAV')
-            set_mode_db('NAV')
-
-            return SMLauncherResponse(f'Starting NAV Process at map path {map_file_path}') 
-        
+                
         if launch_cmd == 'NAV':
             rospy.loginfo('Starting navigation process ...')
             kill_list = ['/robot_state_publisher','/rviz','/map_server','/move_base','/amcl']

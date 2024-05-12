@@ -1,10 +1,13 @@
 #! /usr/bin/env python3
-import rospy, rosparam, PyKDL
+import rospy, rosparam, PyKDL, rospkg
 from math import sqrt, pi
 from geometry_msgs.msg import Point, PoseWithCovarianceStamped, Pose
+
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('webclient')
 pub = None
 amcl_save_to_disk_time = 0
-path_save_amcl = '/home/rai/rai_robot_info'
+path_save_amcl = package_path + 'robot_config/'
 
 
 def quat_to_angle(quat):
