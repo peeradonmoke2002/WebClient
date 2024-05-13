@@ -8,3 +8,13 @@
 2024-05-12 14:01:46 ping wifi router successful.(160/160) ssid: ??????
 2024-05-12 14:06:46 ping wifi router successful.(180/180) ssid: ??????
 2024-05-12 14:11:46 ping wifi router successful.(200/200) ssid: ??????
+2024-05-12 14:16:46 ping wifi router successful.(220/220) ssid: ??????
+2024-05-12 14:21:46 ping wifi router successful.(240/240) ssid: ??????
+2024-05-12 14:26:46 ping wifi router successful.(260/260) ssid: ??????
+2024-05-12 14:31:46 ping wifi router successful.(280/280) ssid: ??????
+2024-05-12 14:36:46 ping wifi router successful.(300/300) ssid: ??????
+2024-05-12 14:41:46 ping wifi router successful.(320/320) ssid: ??????
+2024-05-12 14:46:46 ping wifi router successful.(340/340) ssid: ??????
+2024-05-12 14:51:46 ping wifi router successful.(360/360) ssid: ??????
+2024-05-12 14:56:46 ping wifi router successful.(380/380) ssid: ??????
+2024-05-12 15:01:46 ping wifi router successful.(400/400) ssid: ??????
