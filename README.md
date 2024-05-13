@@ -51,6 +51,10 @@ rosservice call /gmapping_amcl_switcher "launch_command: 'SLAM'"
 - waypoint_server.py: waypoint ros server
 - wifi_network.py: use for monitor wifi ros parameter
 
+## Docker usage
+
+Navigate to the `Docker` directory and follow the instructions in the [README.md](Docker/README.md) file.
+
 <!-- ## Installation
 
 Provide instructions on how to install this package.
