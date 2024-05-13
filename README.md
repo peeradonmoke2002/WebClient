@@ -32,7 +32,7 @@ rosservice call /gmapping_amcl_switcher "launch_command: 'SIM'"
 
 let's control robot in web-application
 
-Case check other function is working
+## Case check other function is working
 
 Start Navigation *Note need to check the map is loaded correctly in launch forlder
 
